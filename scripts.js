@@ -51,15 +51,32 @@ function expenseAdd(newExpense) {
   try {
     // Cria o elemento li para adicionar o item na lista
     const expenseItem = document.createElement("li");
-    expenseItem.classList.add("newExpense");
+    expenseItem.classList.add("expense");
 
     // Cria o ícone da categoria
     const expenseIcon = document.createElement("img");
     expenseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`);
     expenseIcon.setAttribute("alt", newExpense.category_name);
 
+    // Cria o a informação da despesa
+    const expenseInfo = document.createElement("div");
+    expenseInfo.classList.add("expense-info");
+
+    //  Cria o nome da despesa
+    const expenseName = document.createElement("strong");
+    expenseName.textContent = newExpense.expense;
+
+    // Cria a categoria da despesa
+    const expenseCategory = document.createElement("span");
+    expenseCategory.textContent = newExpense.category_name;
+
+    // Adicina nome e da categoria na div das informações da despesa
+    expenseInfo.append(expenseName, expenseCategory);
+
     // Adiciona as informações no item
-    expenseItem.append(expenseIcon);
+    expenseItem.append(expenseIcon, expenseInfo);
+
+    // Adiciona item na lista
     expenseList.append(expenseItem);
   } catch (error) {
     alert("Não foi possível adicionar a despesa.");
