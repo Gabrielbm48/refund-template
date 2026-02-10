@@ -73,8 +73,28 @@ function expenseAdd(newExpense) {
     // Adicina nome e da categoria na div das informações da despesa
     expenseInfo.append(expenseName, expenseCategory);
 
+    // Criar o valor da despesa
+    const expenseAmount = document.createElement("span");
+    expenseAmount.classList.add("expense-amount");
+
+    // Adiciona o formato de moeda em R$
+    const expenseAmoutBRL = document.createElement("small");
+    expenseAmoutBRL.textContent = "R$";
+
+    //Adiciona o valor da despesa
+    expenseAmount.append(
+      expenseAmoutBRL,
+      newExpense.amount.toUpperCase().replace("R$", ""),
+    );
+
+    // Adicionar botao de remover
+    const expenseRemove = document.createElement("img");
+    expenseRemove.setAttribute("src", "./img/remove.svg");
+    expenseRemove.setAttribute("alt", "remover");
+    expenseRemove.classList.add("remove-icon");
+
     // Adiciona as informações no item
-    expenseItem.append(expenseIcon, expenseInfo);
+    expenseItem.append(expenseIcon, expenseInfo, expenseAmount, expenseRemove);
 
     // Adiciona item na lista
     expenseList.append(expenseItem);
